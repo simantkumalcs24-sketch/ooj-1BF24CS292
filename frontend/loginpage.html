@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Microlearn — Login</title>
+
+  <style>
+    :root{
+      --primary: #1e3a8a;
+      --accent:  #f59e0b;
+      --secondary: #10b981;
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --radius: 14px;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+
+    /* ========= FIX EXACT LAYOUT LIKE YOUR SCREENSHOT ========= */
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+      background: linear-gradient(135deg, #f9fafb, #dbeafe);
+      color: var(--text);
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      padding: 60px 60px;
+    }
+
+    /* ============ HEADER ============ */
+    header{
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header span{ color: var(--accent); }
+
+    /* ============ LEFT PROMO SECTION ============ */
+    .promo{
+      max-width: 650px;
+      margin-left: 20px;
+      margin-top: 80px;
+    }
+    .promo h2{
+      font-size: 42px;
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .promo p{
+      font-size: 18px;
+      color: #374151;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .promo ul{
+      margin-top: 10px;
+      list-style: none;
+    }
+    .promo ul li{
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    .promo ul li::before{
+      content: "✔️";
+      margin-right: 10px;
+      color: var(--secondary);
+    }
+
+    /* ============ RIGHT LOGIN CARD (FIXED) ============ */
+    main{
+      margin-left: auto;
+      margin-right: 40px;
+      width: 420px;
+
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+
+      padding: 40px 35px;
+    }
+
+    .tabs{
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+    .tab{
+      flex: 1;
+      text-align: center;
+      padding: 14px 0;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .tab.active{
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--secondary);
+    }
+
+    label{ font-size: 15px; font-weight: 600; }
+    input{
+      width: 100%;
+      padding: 14px;
+      margin-top: 6px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+    }
+
+    .actions{
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .btn{
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .btn-primary{ background: var(--primary); color: #fff; }
+    .btn-secondary{ background: var(--accent); color: #fff; }
+
+    .foot{
+      text-align: center;
+      margin-top: 14px;
+      font-size: 15px;
+    }
+
+    /* ===== SOCIAL BUTTONS ===== */
+    .social-btn{
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    🧠 Micro<span>Learn</span>
+  </header>
+
+  <!-- LEFT SIDE CONTENT -->
+  <div class="promo">
+    <h2>Boost Your Knowledge in Minutes</h2>
+    <p>Learn smarter and faster — bite-sized lessons built for your busy schedule.</p>
+    <ul>
+      <li>Personalized learning experience</li>
+      <li>Track your daily learning goals</li>
+      <li>Access content from top educators</li>
+      <li>Learn anywhere, anytime</li>
+    </ul>
+  </div>
+
+  <!-- RIGHT LOGIN CARD -->
+  <main>
+    <div class="tabs">
+      <div class="tab active" id="tab-signin">Sign In</div>
+      <div class="tab" id="tab-create">Create Account</div>
+    </div>
+
+    <div id="forms-container">
+
+      <!-- LOGIN FORM -->
+      <form id="form-signin">
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com">
+
+        <label>Password</label>
+        <input type="password" placeholder="••••••••">
+
+        <div class="actions">
+          <a href="homepage.html">
+            <button type="button" class="btn btn-primary" onclick="loginUser()">Sign In</button>
+
+          </a>
+          <button type="button" class="btn btn-secondary">Forgot?</button>
+        </div>
+
+        <div class="foot">
+          Don’t have an account? <a href="#" id="toCreate">Create one</a>
+        </div>
+
+        <!-- SOCIAL LOGINS -->
+        <button class="social-btn"><img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20"> Sign in with Google</button>
+        <button class="social-btn"><img src="https://www.svgrepo.com/show/512317/github-142.svg" width="20"> Sign in with GitHub</button>
+      </form>
+
+      <!-- CREATE ACCOUNT FORM -->
+      <form id="form-create" style="display:none">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your Name">
+
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com">
+
+        <label>Password</label>
+        <input type="password" placeholder="At least 8 characters">
+
+        <label>Confirm Password</label>
+        <input type="password" placeholder="Repeat Password">
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Create Account</button>
+          <button type="button" class="btn btn-secondary" id="toSign">Cancel</button>
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+<script>
+  const tabSign = document.getElementById('tab-signin');
+  const tabCreate = document.getElementById('tab-create');
+  const formSign = document.getElementById('form-signin');
+  const formCreate = document.getElementById('form-create');
+  const toCreate = document.getElementById('toCreate');
+  const toSign = document.getElementById('toSign');
+
+  function showCreate(){
+    tabCreate.classList.add('active'); 
+    tabSign.classList.remove('active');
+    formCreate.style.display = 'block';
+    formSign.style.display = 'none';
+  }
+  function showSign(){
+    tabSign.classList.add('active'); 
+    tabCreate.classList.remove('active');
+    formSign.style.display = 'block';
+    formCreate.style.display = 'none';
+  }
+
+  tabCreate.onclick = showCreate;
+  tabSign.onclick = showSign;
+  toCreate.onclick = (e)=>{ e.preventDefault(); showCreate(); };
+  toSign.onclick = (e)=>{ e.preventDefault(); showSign(); };
+</script>
+<script>
+async function loginUser() {
+  const email = document.querySelector("#form-signin input[type='email']").value;
+  const password = document.querySelector("#form-signin input[type='password']").value;
+
+  const res = await fetch("http://localhost:4000/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    alert("❌ " + data.error);
+    return;
+  }
+
+  // Save token for logged-in user
+  localStorage.setItem("token", data.token);
+
+  alert("✔ Login successful!");
+  window.location.href = "homepage.html";
+}
+</script>
+
+
+</body>
+</html>

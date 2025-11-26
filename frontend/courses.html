@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Microlearn — Courses</title>
+  <style>
+    :root{
+      --primary: #1e3a8a;
+      --accent:  #f59e0b;
+      --secondary: #10b981;
+      --bg-gradient: linear-gradient(135deg, #f9fafb, #e0f2fe);
+      --text: #1f2937;
+      --radius: 12px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      background:#fff;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+      color:var(--primary);
+      display:flex;
+      align-items:center;
+    }
+    .logo .emoji{margin-right:8px;font-size:32px;}
+    .logo span{color:var(--accent)}
+
+    nav a{
+      margin-left:24px;
+      text-decoration:none;
+      color:var(--primary);
+      font-weight:600;
+      transition:color 0.2s;
+    }
+    nav a:hover{color:var(--accent)}
+
+    main{
+      flex:1;
+      padding:40px 60px;
+    }
+
+    h1{
+      font-size:32px;
+      color:var(--primary);
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .course-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;
+    }
+
+    .course-card{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:transform 0.2s;
+    }
+    .course-card:hover{transform:translateY(-6px)}
+
+    .course-card h2{
+      font-size:22px;
+      color:var(--primary);
+      margin-bottom:10px;
+    }
+
+    .course-card p{
+      font-size:15px;
+      color:#374151;
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    .course-meta{
+      font-size:14px;
+      color:#6b7280;
+      margin-bottom:16px;
+    }
+
+    .btn{
+      align-self:flex-start;
+      background:var(--primary);
+      color:#fff;
+      padding:10px 18px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      transition:background 0.2s;
+    }
+    .btn:hover{background:#2e47b2;}
+
+    footer{
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      background:#fff;
+      box-shadow:0 -4px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="emoji">🧠</span>Micro<span>Learn</span></div>
+    <nav>
+  <a href="homepage.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="blog.html">Blog</a>
+  <a href="profile.html">Profile</a>
+</nav>
+
+  </header>
+
+  <main>
+    <h1>🎓 Explore Our Courses</h1>
+    <div class="course-grid">
+      <div class="course-card">
+        <h2>💻 Introduction to AI</h2>
+        <div class="course-meta">10 Lessons • Beginner Level</div>
+        <p>Understand the fundamentals of Artificial Intelligence, including neural networks, natural language processing, and ethical implications.</p>
+        <button class="btn">Start Learning</button>
+      </div>
+
+      <div class="course-card">
+        <h2>🧬 Medical Innovations</h2>
+        <div class="course-meta">8 Lessons • Intermediate Level</div>
+        <p>Dive into the world of biotech and healthcare advancements, exploring CRISPR, telemedicine, and smart medical devices.</p>
+        <button class="btn">Start Learning</button>
+      </div>
+
+      <div class="course-card">
+        <h2>📊 Data Science Basics</h2>
+        <div class="course-meta">12 Lessons • Beginner Level</div>
+        <p>Learn the essentials of data analysis, visualization, and machine learning using Python and real-world datasets.</p>
+        <button class="btn">Start Learning</button>
+      </div>
+
+      <div class="course-card">
+        <h2>🎨 Creativity in Tech</h2>
+        <div class="course-meta">6 Lessons • All Levels</div>
+        <p>Discover how creativity and design thinking can enhance problem-solving and innovation in the tech industry.</p>
+        <button class="btn">Start Learning</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 MicroLearn. All Rights Reserved.
+  </footer>
+</body>
+</html>

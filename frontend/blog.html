@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Microlearn — Blog</title>
+  <style>
+    :root{
+      --primary: #1e3a8a;
+      --accent:  #f59e0b;
+      --secondary: #10b981;
+      --bg-gradient: linear-gradient(135deg, #f9fafb, #e0f2fe);
+      --text: #1f2937;
+      --radius: 12px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      background:#fff;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+      color:var(--primary);
+      display:flex;
+      align-items:center;
+    }
+    .logo .emoji{margin-right:8px;font-size:32px;}
+    .logo span{color:var(--accent)}
+
+    nav a{
+      margin-left:24px;
+      text-decoration:none;
+      color:var(--primary);
+      font-weight:600;
+      transition:color 0.2s;
+    }
+    nav a:hover{color:var(--accent)}
+
+    main{
+      flex:1;
+      padding:40px 60px;
+      display:flex;
+      flex-direction:column;
+      gap:30px;
+    }
+
+    .blog-card{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+      padding:30px;
+      transition:transform 0.2s;
+    }
+    .blog-card:hover{transform:translateY(-6px)}
+    .blog-card h2{
+      font-size:24px;
+      color:var(--primary);
+      margin-bottom:10px;
+    }
+    .blog-card .meta{
+      font-size:14px;
+      color:#6b7280;
+      margin-bottom:14px;
+    }
+    .blog-card p{
+      font-size:16px;
+      line-height:1.6;
+      color:#374151;
+      margin-bottom:16px;
+    }
+    .btn{
+      background:var(--primary);
+      color:#fff;
+      padding:10px 18px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      transition:background 0.2s;
+    }
+    .btn:hover{background:#2e47b2;}
+
+    footer{
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      background:#fff;
+      box-shadow:0 -4px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="emoji">🧠</span>Micro<span>Learn</span></div>
+   <nav>
+  <a href="homepage.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="blog.html">Blog</a>
+  <a href="profile.html">Profile</a>
+</nav>
+
+  </header>
+
+  <main>
+    <div class="blog-card">
+      <h2>🧬 The Future of AI in Healthcare</h2>
+      <div class="meta">By Dr. Jane Foster • Nov 11, 2025</div>
+      <p>Artificial Intelligence is revolutionizing medicine with faster diagnoses, improved patient monitoring, and predictive analytics. Discover how machine learning models are reshaping the healthcare industry.</p>
+      <button class="btn">Read More</button>
+    </div>
+
+    <div class="blog-card">
+      <h2>💻 Quantum Computing: The Next Tech Leap</h2>
+      <div class="meta">By Alan White • Nov 10, 2025</div>
+      <p>Quantum computers promise to solve complex problems far beyond the capability of traditional systems. Explore how this technology could change everything from cybersecurity to pharmaceuticals.</p>
+      <button class="btn">Read More</button>
+    </div>
+
+    <div class="blog-card">
+      <h2>🧠 Neuroscience Meets Nanotech</h2>
+      <div class="meta">By Dr. Aria Lin • Nov 9, 2025</div>
+      <p>Learn how advancements in nanotechnology are helping scientists understand and treat neurological disorders more effectively than ever before.</p>
+      <button class="btn">Read More</button>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 MicroLearn. All Rights Reserved.
+  </footer>
+</body>
+</html>

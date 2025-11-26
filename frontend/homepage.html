@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Microlearn — Home</title>
+  <style>
+    :root{
+      --primary: #1e3a8a;
+      --accent:  #f59e0b;
+      --secondary: #10b981;
+      --bg-gradient: linear-gradient(135deg, #f9fafb, #e0f2fe);
+      --text: #1f2937;
+      --radius: 12px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      overflow-x:hidden;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      background:#fff;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+      color:var(--primary);
+      display:flex;
+      align-items:center;
+    }
+    .logo .emoji{margin-right:8px;font-size:32px;}
+    .logo span{color:var(--accent)}
+
+    nav a{
+      margin-left:24px;
+      text-decoration:none;
+      color:var(--primary);
+      font-weight:600;
+      transition:color 0.2s;
+    }
+    nav a:hover{color:var(--accent)}
+
+    .menu-icon {
+      position:absolute;
+      left:25px;
+      font-size:26px;
+      cursor:pointer;
+      color:var(--primary);
+      transition:transform 0.2s;
+    }
+    .menu-icon:hover { transform:scale(1.1); color:var(--accent); }
+
+    /* Sidebar */
+    .sidebar {
+      position:fixed;
+      top:0;
+      left:-260px;
+      width:250px;
+      height:100%;
+      background:#fff;
+      box-shadow:4px 0 20px rgba(0,0,0,0.1);
+      border-radius:0 16px 16px 0;
+      padding:40px 20px;
+      transition:left 0.4s ease;
+      z-index:200;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .sidebar.active { left:0; }
+
+    .sidebar h2 {
+      font-size:22px;
+      color:var(--primary);
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .sidebar a {
+      display:block;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      font-size:16px;
+      padding:12px 14px;
+      border-radius:8px;
+      opacity:0;
+      transform:translateX(-15px);
+    }
+
+    .sidebar a:hover {
+      background:var(--bg-gradient);
+      color:var(--primary);
+    }
+
+    .sidebar.active a {
+      animation: slideIn 0.5s forwards;
+    }
+    @keyframes slideIn {
+      from {opacity:0; transform:translateX(-20px);}
+      to {opacity:1; transform:translateX(0);}
+    }
+
+    .sidebar-footer {
+      text-align:center;
+      font-size:14px;
+      color:#6b7280;
+      padding-top:10px;
+      opacity:0.7;
+    }
+
+    .overlay {
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.4);
+      display:none;
+      z-index:150;
+      transition:opacity 0.3s ease;
+    }
+    .overlay.active {display:block;opacity:1;}
+
+    .hero{
+      text-align:center;
+      padding:60px 20px;
+      animation:fadeIn 1s ease;
+    }
+    .hero h1{
+      font-size:40px;
+      color:var(--primary);
+      font-weight:800;
+      margin-bottom:16px;
+      animation:float 3s ease-in-out infinite;
+    }
+    .hero p{
+      font-size:18px;
+      color:#374151;
+      margin-bottom:24px;
+    }
+
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);} }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+
+    main{
+      flex:1;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:24px;
+      padding:40px 60px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition: all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+      animation: fadeIn 1s ease;
+    }
+    .card::before{
+      content:'';
+      position:absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: linear-gradient(135deg, rgba(30,58,138,0.05), rgba(245,158,11,0.1));
+      opacity:0;
+      transition:opacity 0.3s ease;
+      border-radius:var(--radius);
+    }
+    .card:hover::before{opacity:1;}
+    .card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 10px 25px rgba(30,58,138,0.2);}
+    .card h2{font-size:22px;color:var(--primary);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+    .card p{font-size:15px;line-height:1.6;color:#374151;margin-bottom:20px;}
+    .btn{
+      align-self:flex-start;
+      background:var(--primary);
+      color:#fff;
+      padding:10px 18px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      transition:background 0.2s, transform 0.2s;
+    }
+    .btn:hover{background:#2e47b2;transform:scale(1.05);}
+
+    .quote-box{
+      text-align:center;
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      margin:40px auto;
+      padding:20px 40px;
+      max-width:600px;
+      font-size:18px;
+      font-style:italic;
+      color:#1e3a8a;
+      animation:fadeIn 1s ease;
+    }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      background:#fff;
+      box-shadow:0 -4px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div>
+      <h2>☰ Menu</h2>
+      <a href="C:/Users/siman/Desktop/fate/homepage.html">🏠 Dashboard</a>
+      <a href="C:/Users/siman/Desktop/fate/profile.html">👤 Profile</a>
+      <a href="#">⚙️ Settings</a>
+      <a href="#">💬 Help</a>
+      <a href="#" id="logoutBtn">🚪 Log Out</a>
+    </div>
+    <div class="sidebar-footer">© 2025 MicroLearn</div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="menu-icon" id="menuBtn">☰</div>
+    <div class="logo"><span class="emoji">🧠</span>Micro<span>Learn</span></div>
+    <nav>
+      <a href="homepage.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="blog.html">Blog</a>
+  <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>👋 Welcome back, Goku!</h1>
+    <p id="daily-greeting">Ready to learn something new today?</p>
+  </section>
+
+  <main>
+    <div class="card">
+      <h2>📘 Learn a Daily Word</h2>
+      <p>Expand your vocabulary one word at a time. Today's word: <strong>Serendipity</strong>.</p>
+      <button class="btn">Learn More</button>
+    </div>
+
+    <div class="card">
+      <h2>💡 Random Fact of the Day</h2>
+      <p>Did you know? Honey never spoils. Even 3,000-year-old jars found in tombs are still edible!</p>
+      <button class="btn">Discover More</button>
+    </div>
+
+    <div class="card">
+      <h2>🧬 Tech & Medicine Blogs</h2>
+      <p>Stay updated with the latest in technology and medicine. Read expert-written daily blogs curated just for you.</p>
+      <button class="btn">Read Blogs</button>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Genre-Based Learning</h2>
+      <p>Pick your interest — from science to art, history to health — explore microlearning paths tailored to your curiosity.</p>
+      <button class="btn">Explore Topics</button>
+    </div>
+  </main>
+
+  <div class="quote-box" id="quote-box">
+    "Learning is a treasure that will follow its owner everywhere." — Chinese Proverb
+  </div>
+
+  <footer>
+    © 2025 MicroLearn. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Sidebar toggle
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const menuBtn = document.getElementById('menuBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    menuBtn.onclick = () => { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); };
+    overlay.onclick = () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); };
+    logoutBtn.onclick = () => { window.location.href = "C:\Users\siman\Desktop\project\frontend\loginpage.html"; };
+
+    // Greeting
+    const hr = new Date().getHours();
+    const greeting = document.getElementById("daily-greeting");
+    if (hr < 12) greeting.textContent = "☀️ Good morning, ready to start your day with knowledge?";
+    else if (hr < 18) greeting.textContent = "🌤️ Good afternoon, keep your curiosity alive!";
+    else greeting.textContent = "🌙 Good evening, a great time to learn before rest.";
+
+    // Quotes
+    const quotes = [
+      "“An investment in knowledge pays the best interest.” — Benjamin Franklin",
+      "“The beautiful thing about learning is that no one can take it away from you.” — B.B. King",
+      "“Education is the passport to the future.” — Malcolm X",
+      "“Learning never exhausts the mind.” — Leonardo da Vinci",
+      "“The expert in anything was once a beginner.” — Helen Hayes"
+    ];
+
+    let qi = 0;
+    const quoteBox = document.getElementById("quote-box");
+    setInterval(() => {
+      qi = (qi + 1) % quotes.length;
+      quoteBox.textContent = quotes[qi];
+    }, 8000);
+  </script>
+</body>
+</html>

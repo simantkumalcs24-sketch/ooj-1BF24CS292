@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Microlearn — Profile</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --accent: #f59e0b;
+      --secondary: #10b981;
+      --bg-gradient: linear-gradient(135deg, #f9fafb, #e0f2fe);
+      --text: #1f2937;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    .logo .emoji { margin-right: 8px; font-size: 32px; }
+    .logo span { color: var(--accent); }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    main {
+      flex: 1;
+      padding: 40px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-container {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      background: url('C:/Users/siman/Desktop/fate/Screenshot 2025-11-12 002200.png') center/cover;
+      margin-bottom: 20px;
+    }
+
+    h1 { font-size: 28px; color: var(--primary); margin-bottom: 6px; }
+    .email { font-size: 15px; color: #6b7280; margin-bottom: 20px; }
+
+    /* Level Progress Bar */
+    .level-container {
+      width: 100%;
+      background: #f3f4f6;
+      border-radius: 8px;
+      height: 16px;
+      overflow: hidden;
+      margin: 10px 0 20px 0;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .level-progress {
+      height: 100%;
+      width: 65%;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      border-radius: 8px;
+      transition: width 0.4s ease;
+    }
+
+    .level-label {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    /* Streak */
+    .streak-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: var(--accent);
+      padding: 10px 20px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .streak-box:hover .fire {
+      text-shadow: 0 0 6px #ff9f1c, 0 0 12px #ffb703, 0 0 20px #f59e0b;
+      transform: scale(1.3) rotate(8deg);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      gap: 10px;
+    }
+
+    .stat-box {
+      background: var(--bg-gradient);
+      border-radius: var(--radius);
+      padding: 20px 30px;
+      flex: 1;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .stat-box:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 18px rgba(30,58,138,0.2);
+      background: linear-gradient(135deg, #fef3c7, #e0f2fe);
+    }
+    .stat-box h2 {
+      color: var(--primary);
+      font-size: 24px;
+      margin-bottom: 5px;
+      transition: all 0.3s ease;
+    }
+    .stat-box:hover h2 {
+      color: var(--accent);
+      text-shadow: 0 0 8px rgba(245,158,11,0.6);
+    }
+
+    /* Badges */
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: #fff7ed;
+      border: 1px solid #fbbf24;
+      color: #b45309;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .badge:hover {
+      transform: scale(1.1);
+      background: #fef3c7;
+      box-shadow: 0 6px 16px rgba(245,158,11,0.3);
+    }
+
+    /* Activity Feed */
+    .activity-feed {
+      text-align: left;
+      width: 100%;
+      background: #f9fafb;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-top: 30px;
+    }
+    .activity-feed h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    .activity {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .activity span.icon {
+      font-size: 18px;
+    }
+    .activity p {
+      margin: 0;
+      font-size: 15px;
+      color: #374151;
+    }
+    .activity time {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    /* Bio */
+    .bio {
+      margin-top: 30px;
+      text-align: left;
+      width: 100%;
+    }
+    .bio h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .bio p {
+      color: #374151;
+      background: #f3f4f6;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+      margin-top: 20px;
+    }
+    .btn:hover { background: #2e47b2; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: #fff;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="emoji">🧠</span>Micro<span>Learn</span></div>
+    <nav>
+      <nav>
+  <a href="homepage.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="blog.html">Blog</a>
+  <a href="profile.html">Profile</a>
+</nav>
+
+    </nav>
+  </header>
+
+  <main>
+    <div class="profile-container">
+      <div class="profile-pic"></div>
+      <h1>Son Goku</h1>
+      <div class="email">songoku@gmail.com • Member Since January 1997</div>
+
+      <div class="level-label">Level 7 — Knowledge Seeker</div>
+      <div class="level-container"><div class="level-progress"></div></div>
+
+      <div class="streak-box">
+        <span class="fire">🔥</span>
+        <span id="streak-count">7-Day Streak</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box"><h2>15</h2><p>Courses Enrolled</p></div>
+        <div class="stat-box"><h2>8</h2><p>Courses Completed</p></div>
+        <div class="stat-box"><h2>250</h2><p>Learning Hours</p></div>
+      </div>
+
+      <h3>🏅 Achievements</h3>
+      <div class="badges">
+        <div class="badge">🔥 Quick Learner</div>
+        <div class="badge">📅 7-Day Streak</div>
+        <div class="badge">🎓 Course Finisher</div>
+      </div>
+
+      <div class="bio">
+        <h3>About You</h3>
+        <p>“A curious mind exploring knowledge across AI, health, and creativity. Loves to learn new things daily and share wisdom.”</p>
+      </div>
+
+      <div class="activity-feed">
+        <h3>Recent Activity</h3>
+        <div class="activity"><span class="icon">📘</span><p>Completed “Introduction to AI”</p><time>2 hours ago</time></div>
+        <div class="activity"><span class="icon">💡</span><p>Read “The Future of AI in Healthcare” blog</p><time>Yesterday</time></div>
+        <div class="activity"><span class="icon">🎯</span><p>Started “Data Science Basics” course</p><time>2 days ago</time></div>
+      </div>
+
+      <button class="btn">Edit Profile</button>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 MicroLearn. All Rights Reserved.
+  </footer>
+
+  <script>
+    const streakEl = document.getElementById('streak-count');
+    const today = new Date().toDateString();
+    let streakData = JSON.parse(localStorage.getItem('microlearn-streak')) || { days: 0, lastLogin: '' };
+
+    if (streakData.lastLogin !== today) {
+      const lastDate = new Date(streakData.lastLogin);
+      const diff = (new Date(today) - lastDate) / (1000 * 60 * 60 * 24);
+      if (diff === 1) streakData.days++;
+      else streakData.days = 1;
+      streakData.lastLogin = today;
+      localStorage.setItem('microlearn-streak', JSON.stringify(streakData));
+    }
+    streakEl.textContent = `${streakData.days}-Day Streak`;
+  </script>
+</body>
+</html>
